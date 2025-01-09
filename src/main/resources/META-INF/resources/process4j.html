@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Process4j</title>
+<link rel="stylesheet" href="resources/lib/bpmn-js/bpmn-embedded.css">
+<link rel="stylesheet" href="resources/lib/bpmn-js/diagram-js.css">
+<link rel="stylesheet" href="resources/lib/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="resources/lib/fontawesome/all.min.css">
+<link rel="stylesheet" href="resources/process4j.css">
+<link rel="icon" href="resources/process4j.svg">
+
+</head>
+<body id="body">
+
+	<!-- Canvas -->
+	<canvas style="display: none;"></canvas>
+
+	<!-- Header -->
+	<div id="p4j-header" class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<img id="logo" src="resources/process4j.svg" width="96px" class="float-start"> <a class="navbar-brand float-start" href="#io.process4j">Process4j <small>version ${project.version}</small></a>
+				
+				<!-- BPMN -->
+				<span id="processName" class="bpmn"></span>
+				<div class="btn-group bpmn" role="group">
+					<button id="bpmn-rules-toggle-button" type="button" class="btn btn-outline-primary" title="Switch to rule editor">
+						<i class="fa-solid fa-gavel"></i>
+					</button>
+					<button id="bpmn-new-button" type="button" class="btn btn-outline-primary" title="Create new BPMN diagram">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+					<button id="bpmn-open-button" type="button" class="btn btn-outline-primary" title="Open BPMN diagram">
+						<i class="fa-solid fa-folder-open"></i>
+					</button>
+					<button id="bpmn-preview-button" type="button" class="btn btn-outline-primary" title="Preview BPMN diagram">
+						<i class="fa-solid fa-search"></i>
+					</button>
+					<button id="bpmn-preview-svg-button" type="button" class="btn btn-outline-primary" title="Preview BPMN diagram as SVG image">
+						<i class="fa-solid fa-image"></i>
+					</button>
+					<button id="bpmn-download-button" type="button" class="btn btn-outline-primary" title="Download BPMN diagram">
+						<i class="fa-solid fa-download"></i>
+					</button>
+					<button id="bpmn-download-svg-button" type="button" class="btn btn-outline-primary" title="Download BPMN diagram as SVG image">
+						<i class="fa-solid fa-download"></i> <i class="fa-solid fa-image"></i>
+					</button>
+					<button id="bpmn-download-png-button" type="button" class="btn btn-outline-primary" title="Download BPMN diagram as PNG image">
+						<i class="fa-solid fa-download"></i> <i class="fa-regular fa-image"></i>
+					</button>
+					<button id="bpmn-toggle-panel-button" type="button" class="btn btn-outline-primary" title="Open panel">
+						<i class="fa-solid fa-bars"></i>
+					</button>
+				</div>
+				
+				<!-- Rules -->
+				<div class="btn-group rules d-none" role="group">
+					<button id="rules-bpmn-toggle-button" type="button" class="btn btn-outline-primary" title="Switch to BPMN modeler">
+						<i class="fa-solid fa-gears"></i>
+					</button>
+					<button id="rules-add-button" type="button" class="btn btn-outline-primary" title="Add rules">
+						<i class="fa-solid fa-square-plus"></i>
+					</button>
+					<button id="rules-new-button" type="button" class="btn btn-outline-primary" title="Create new resource">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+					<button id="rules-open-button" type="button" class="btn btn-outline-primary" title="Open resource">
+						<i class="fa-solid fa-folder-open"></i>
+					</button>
+					<button id="rules-preview-button" type="button" class="btn btn-outline-primary" title="Preview resource">
+						<i class="fa-solid fa-search"></i>
+					</button>
+					<button id="rules-download-button" type="button" class="btn btn-outline-primary" title="Download resource">
+						<i class="fa-solid fa-download"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Canvas -->
+	<div id="canvas" class="bpmn"></div>
+	
+	<div class="container-fluid d-none rules">
+		<div id="widgets" class="row"></div>
+	</div>
+
+	<!-- Panel -->
+	<div id="panel" class="bpmn">
+		<div class="row">
+			<div class="col" style="min-height: 2.75rem;">
+
+				<!-- Name -->
+				<h3 id="po-name-input" contenteditable="false">[Name]</h3>
+			</div>
+			<div class="col">
+
+				<!-- Close -->
+				<button id="panel-close-button" type="button" class="btn btn-primary" title="Close panel">
+					<i class="fas fa-times"></i>
+				</button>
+
+				<!-- Sticky -->
+				<button id="panel-sticky-button" type="button" class="btn btn-primary" title="Close panel" value="true">
+					<i id="panel-sticky-icon" class="fas fa-thumbtack"></i>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+
+				<!-- Type -->
+				<span class="node-type process subprocess"><i class="fas fa-cog" title="Process"></i> Process</span>
+				<span class="node-type task"><i class="fas fa-wrench" title="Task"></i> Task</span>
+				<span class="node-type businessruletask"><i class="fas fa-gavel" title="Decision Table"></i> Decision Table</span>
+				<span class="node-type exclusivegateway"><i class="fas fa-map-signs"></i> Gateway</span> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			
+				<!-- Implementation -->
+				<label for="po-impl-input" class="form-label">Implementation</label>
+				<input disabled id="po-impl-input" type="text" class="form-control" aria-describedby="po-impl-input-help-block" placeholder="com.acme.AnImplementation">
+				<div id="po-impl-input-help-block" class="form-text" style="min-height: 21px;">
+				<span class="node-type process d-none" >FQCN of the implementation for this process (will be generated)</span>
+				<span class="node-type subprocess d-none" >FQCN of the io.process4j.core.Process executed by this sub process node.</span>
+				<span class="node-type task d-none">FQCN of the io.process4j.core.Task executed by this task node.</span>
+				<span class="node-type businessruletask d-none">FQCN of the io.process4j.core.DecisionTable executed by this business rule task node.</span>
+				<span class="node-type exclusivegateway d-none">FQCN of the io.process4j.core.Gateway executed by this exclusive gateway node.</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Loop characteristics -->
+		<div class="row">
+			<div class="col">
+			
+				<!-- While -->
+				<label for="po-while-input" class="form-label">While</label>
+				<input disabled id="po-while-input" type="text" class="form-control" aria-describedby="po-while-input-help-block" placeholder="//count < 10">
+				<div id="po-while-input-help-block" class="form-text">A 'do while'-condition using boolean operators. Operands can be business- and/or process data
+					expressed with JSON pointers . Node execution is repeated as long as the condition holds true.</div>
+			</div>
+			<div class="col">
+			
+				<!-- Foreach -->
+				<label for="po-foreach-input" class="form-label">Foreach</label>
+				<input disabled id="po-foreach-input" type="text" class="form-control" aria-describedby="po-foreach-input-help-block" placeholder="/items">
+				<div id="po-foreach-input-help-block" class="form-text">A JSON pointer to a list (JSON array) in the business- or process data. Node execution is repeated for each item in the list.</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+
+				<!-- Rules -->
+				<label for="po-rules-input" class="form-label">Rules</label>
+				<div class="input-group">
+					<span class="input-group-text">Resource</span>
+					<input disabled id="po-rules-resource-input" type="text" class="form-control" aria-describedby="po-rules-input-help-block" placeholder="rules/rules.json">
+					<span class="input-group-text">/</span>
+					<input disabled id="p4j-rules-key-input" type="text" class="form-control" aria-describedby="po-rules-input-help-block" placeholder="Decide Whatever">
+					<button disabled id="edit-rules-button" type="button" class="btn btn-outline-primary" title="Add these rules">
+						<i class="fa-solid fa-pencil"></i>
+					</button>
+				</div>
+				<div id="po-rules-input-help-block" class="form-text">A JSON Object resource (on classpath) and a (first level) attribute holding the rules. <a target="_blank" href="resources/process4j-example-rules.json">Example</a></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Docs</a></li>
+					<li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Java</a></li>
+				</ul>
+
+				<!-- Documentation -->
+				<!-- <label for="po-documentation-input" class="form-label">Documentation</label> -->
+				<textarea disabled id="po-documentation-input" class="form-control" aria-describedby="po-documentation-input-help-block" rows="10"></textarea>
+				<div id="po-documentation-input-help-block" class="form-text">Description.</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- BPMN file upload -->
+	<input type="file" id="bpmn-upload" style="display: none;">
+	
+	<!-- Rules file upload -->
+	<input type="file" id="rules-upload" style="display: none;">
+</body>
+<script src="resources/lib/bpmn-js/bpmn-modeler.production.min.js"></script>
+<script src="resources/lib/canvg/canvg.js"></script>
+<script src="resources/lib/uuidv4.min.js"></script>
+<script src="resources/process4j-bindings.js"></script>
+<script src="resources/process4j.js"></script>
+</html>

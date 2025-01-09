@@ -1,0 +1,71 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <h2>
+                ACME
+            </h2>
+            <small>
+                com.acme.ACMEProcess
+            </small>
+            <p>
+                Process for completion and validation of business data
+            </p>
+        </div>
+        <div>
+            <h2>
+                Complete
+            </h2>
+            <small>
+                com.acme.ACMECompletionProcess
+            </small>
+            <p>
+                Sub process for completion of business data
+            </p>
+        </div>
+        <div>
+            <h2>
+                Select schema ö
+            </h2>
+            <small>
+                io.process4j.validation.JSONSchemaDecisionTable
+            </small>
+            <p>
+                Rules for deciding schema for validation of business data
+            </p>
+            <div>
+                <h3>
+                    Rules
+                </h3>
+                <ol>
+                    <li>
+                        If process data doesn&#x27;t contain a schema, then use &#x27;com.acme.schema.json&#x27;
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div>
+            <h2>
+                Validate
+            </h2>
+            <small>
+                io.process4j.validation.JSONSchemaValidationTask
+            </small>
+            <p>
+                Task for schema validation of business data
+            </p>
+        </div>
+        <div>
+            <h2>
+                Valid?
+            </h2>
+            <small>
+                com.acme.ACMEGateway
+            </small>
+            <p>
+                Route by business data validity
+            </p>
+        </div>
+    </body>
+</html>

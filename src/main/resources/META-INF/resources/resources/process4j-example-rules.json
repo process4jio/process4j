@@ -1,0 +1,31 @@
+{
+	"Decide Dish": [
+		{
+			"expression": "/guests/{i}/diet == vegan",
+			"result": "broccoli",
+			"description": "If any guest is vegan all eat broccoli"
+		},
+		{
+			"expression": "/nrOfGuests > 8",
+			"result": "fish n' chips",
+			"description": "if number of guests are more than eight all eat fish n' chips"
+		}
+	],
+	"Decide Whatever": [
+		{
+			"expression": "/name == Jane Doe || /name != John Doe || /birthday < 20-10-01",
+			"result": "true",
+			"description": ""
+		},
+		{
+			"expression": "/name == John Doe && /height == 1.83 && !/admin && /member && /notes == null && !?/missing",
+			"result": "false",
+			"description": ""
+		},
+		{
+			"expression": "/objects/0/name ^= Foo && 12.0 ~ /numbers",
+			"result": "true",
+			"description": ""
+		}
+	]
+}

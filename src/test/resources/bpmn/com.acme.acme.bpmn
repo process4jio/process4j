@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_7b3255a" name="Definitions_7b3255a" targetNamespace="http://bpmn.process4j.io/">
+  <bpmn:process id="Process_7b3255a" name="ACME">
+    <bpmn:documentation id="p4j-implementation-for-Process_7b3255a">com.acme.ACMEProcess</bpmn:documentation>
+    <bpmn:documentation>Decides type, handles A if applicable and completes each transaction</bpmn:documentation>
+    <bpmn:startEvent id="Event_7b3255a" name="Start">
+      <bpmn:outgoing>Flow_0wzia6c</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0wzia6c" name="START" sourceRef="Event_7b3255a" targetRef="Activity_1ld1m1a" />
+    <bpmn:exclusiveGateway id="Gateway_0wxtdyd" name="Type?">
+      <bpmn:documentation id="p4j-implementation-for-Gateway_0wxtdyd">com.acme.impl.Type</bpmn:documentation>
+      <bpmn:documentation>Routes by type</bpmn:documentation>
+      <bpmn:incoming>Flow_0lqexz6</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mez4hn</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1it5daf</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1llnsxt</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0lqexz6" name="TYPE DECIDED" sourceRef="Activity_1ld1m1a" targetRef="Gateway_0wxtdyd" />
+    <bpmn:task id="Activity_04davso" name="Handle A">
+      <bpmn:documentation id="p4j-implementation-for-Activity_04davso">com.acme.impl.HandleA</bpmn:documentation>
+      <bpmn:documentation>Handles A</bpmn:documentation>
+      <bpmn:incoming>Flow_0mez4hn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ylcjza</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0mez4hn" name="A" sourceRef="Gateway_0wxtdyd" targetRef="Activity_04davso" />
+    <bpmn:endEvent id="Event_0ylxas6">
+      <bpmn:incoming>Flow_08ic04f</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ylcjza" name="A HANDLED" sourceRef="Activity_04davso" targetRef="Activity_1608rtw" />
+    <bpmn:sequenceFlow id="Flow_1it5daf" name="B" sourceRef="Gateway_0wxtdyd" targetRef="Activity_1608rtw" />
+    <bpmn:businessRuleTask id="Activity_1ld1m1a" name="Decide type">
+      <bpmn:documentation id="p4j-implementation-for-Activity_1ld1m1a">com.acme.impl.DecideType</bpmn:documentation>
+      <bpmn:documentation id="p4j-rules-key-for-Activity_1ld1m1a">Decide type</bpmn:documentation>
+      <bpmn:documentation id="p4j-foreach-expression-for-Activity_1ld1m1a">/transactions</bpmn:documentation>
+      <bpmn:documentation>Decides (overall) type based on transaction types</bpmn:documentation>
+      <bpmn:documentation id="p4j-rules-resource-for-Activity_1ld1m1a">rules/acme.json</bpmn:documentation>
+      <bpmn:incoming>Flow_0wzia6c</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lqexz6</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" />
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0jm0ieu" name="COMPLETED TXS" sourceRef="Activity_1608rtw" targetRef="Activity_12ihbzq" />
+    <bpmn:subProcess id="Activity_1608rtw" name="Complete tx">
+      <bpmn:documentation id="p4j-foreach-expression-for-Activity_1608rtw">/transactions</bpmn:documentation>
+      <bpmn:documentation id="p4j-implementation-for-Activity_1608rtw">com.acme.completetx.CompleteTXProcess</bpmn:documentation>
+      <bpmn:documentation>Complete transaction</bpmn:documentation>
+      <bpmn:incoming>Flow_1ylcjza</bpmn:incoming>
+      <bpmn:incoming>Flow_1it5daf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jm0ieu</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" />
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="Flow_1llnsxt" name="OTHER" sourceRef="Gateway_0wxtdyd" targetRef="Event_0ych1ju" />
+    <bpmn:endEvent id="Event_0ych1ju">
+      <bpmn:incoming>Flow_1llnsxt</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Activity_12ihbzq" name="Terminate foreach early">
+      <bpmn:documentation id="p4j-implementation-for-Activity_12ihbzq">com.acme.impl.TerminateForeachEarly</bpmn:documentation>
+      <bpmn:documentation id="p4j-foreach-expression-for-Activity_12ihbzq">/transactions</bpmn:documentation>
+      <bpmn:incoming>Flow_0jm0ieu</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dghbyt</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" />
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1dghbyt" name="FOREACH TERMINATED EARLY" sourceRef="Activity_12ihbzq" targetRef="Activity_1megahe" />
+    <bpmn:task id="Activity_1megahe" name="Terminate while early">
+      <bpmn:documentation id="p4j-while-condition-for-Activity_1megahe">1 == 1</bpmn:documentation>
+      <bpmn:documentation id="p4j-implementation-for-Activity_1megahe">com.acme.impl.TerminateWhileEarly</bpmn:documentation>
+      <bpmn:incoming>Flow_1dghbyt</bpmn:incoming>
+      <bpmn:outgoing>Flow_08ic04f</bpmn:outgoing>
+      <bpmn:standardLoopCharacteristics />
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_08ic04f" name="WHILE TERMINATED EARLY" sourceRef="Activity_1megahe" targetRef="Event_0ylxas6" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_7b3255a">
+    <bpmndi:BPMNPlane id="BPMNPlane_7b3255a" bpmnElement="Process_7b3255a">
+      <bpmndi:BPMNEdge id="Flow_1llnsxt_di" bpmnElement="Flow_1llnsxt">
+        <di:waypoint x="440" y="124" />
+        <di:waypoint x="440" y="270" />
+        <di:waypoint x="962" y="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="253" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jm0ieu_di" bpmnElement="Flow_0jm0ieu">
+        <di:waypoint x="840" y="99" />
+        <di:waypoint x="940" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="855" y="66" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1it5daf_di" bpmnElement="Flow_1it5daf">
+        <di:waypoint x="440" y="124" />
+        <di:waypoint x="440" y="210" />
+        <di:waypoint x="790" y="210" />
+        <di:waypoint x="790" y="139" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="494" y="192" width="8" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ylcjza_di" bpmnElement="Flow_1ylcjza">
+        <di:waypoint x="630" y="99" />
+        <di:waypoint x="740" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="649" y="81" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mez4hn_di" bpmnElement="Flow_0mez4hn">
+        <di:waypoint x="465" y="99" />
+        <di:waypoint x="530" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="494" y="81" width="7" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lqexz6_di" bpmnElement="Flow_0lqexz6">
+        <di:waypoint x="290" y="99" />
+        <di:waypoint x="415" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="312" y="81" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wzia6c_di" bpmnElement="Flow_0wzia6c">
+        <di:waypoint x="118" y="99" />
+        <di:waypoint x="190" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="136" y="81" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dghbyt_di" bpmnElement="Flow_1dghbyt">
+        <di:waypoint x="1040" y="99" />
+        <di:waypoint x="1150" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1060" y="60" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08ic04f_di" bpmnElement="Flow_08ic04f">
+        <di:waypoint x="1250" y="99" />
+        <di:waypoint x="1382" y="99" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1282" y="60" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_Event_7b3255a" bpmnElement="Event_7b3255a">
+        <dc:Bounds x="82" y="81" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="88" y="117" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0wxtdyd_di" bpmnElement="Gateway_0wxtdyd" isMarkerVisible="true">
+        <dc:Bounds x="415" y="74" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="426" y="44" width="29" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04davso_di" bpmnElement="Activity_04davso">
+        <dc:Bounds x="530" y="59" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0y8bqnm_di" bpmnElement="Activity_1ld1m1a">
+        <dc:Bounds x="190" y="59" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12ihbzq_di" bpmnElement="Activity_12ihbzq">
+        <dc:Bounds x="940" y="59" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1megahe_di" bpmnElement="Activity_1megahe">
+        <dc:Bounds x="1150" y="59" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ylxas6_di" bpmnElement="Event_0ylxas6">
+        <dc:Bounds x="1382" y="81" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pl4hpv_di" bpmnElement="Activity_1608rtw">
+        <dc:Bounds x="740" y="59" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ych1ju_di" bpmnElement="Event_0ych1ju">
+        <dc:Bounds x="962" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

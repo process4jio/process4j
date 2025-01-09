@@ -1,0 +1,19 @@
+{
+  "Decide currency": [
+    {
+      "expression": "/transactions/${i}/type == A && /transactions/${i}/region == 1",
+      "result": "FOO",
+      "description": ""
+    },
+    {
+      "expression": "/transactions/${i}/type == A",
+      "result": "FUM",
+      "description": ""
+    },
+    {
+      "expression": "1 == 1",
+      "result": "BAZ",
+      "description": ""
+    }
+  ]
+}

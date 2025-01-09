@@ -1,0 +1,33 @@
+{
+	"name": "John Doe",
+	"height": "1.83",
+	"birthday": "1970-01-01",
+	"birthmonth": "2003-01",
+	"member": true,
+	"admin": false,
+	"notes": null,
+	"strings": [
+		"bronze",
+		"gold",
+		"gold"
+	],
+	"numbers": [
+		12.0,
+		340,
+		34,
+		34.0,
+		45
+	],
+	"objects": [
+		{
+			"id": "1356c67d-7ad1-338d-816b-fb822dd2c25d",
+			"name": "Foo"
+		},
+		{
+			"id": "374b53af-e69b-3e18-bb02-ef0efffd2b25",
+			"name": "Fum",
+			"amount": 100,
+			"anotherAmount": 200.1
+		}
+	]
+}
