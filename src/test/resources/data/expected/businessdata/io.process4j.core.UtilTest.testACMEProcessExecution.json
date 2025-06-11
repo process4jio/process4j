@@ -1,0 +1,20 @@
+{
+	"transactions": [
+		{
+			"type": "A",
+			"region": 1,
+			"amount": 250,
+			"currency": "FOO"
+		},
+		{
+			"type": "B",
+			"amount": 200,
+			"currency": "BAZ"
+		},
+		{
+			"type": "A",
+			"amount": 1800,
+			"currency": "FUM"
+		}
+	]
+}

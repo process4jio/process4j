@@ -1,0 +1,19 @@
+{
+  "Decide type": [
+    {
+      "expression": "/transactions/${i}/type == A",
+      "result": "A",
+      "description": "If current transaction is of type A then type is A"
+    },
+    {
+      "expression": "//type != A && /transactions/${i}/type == B",
+      "result": "B",
+      "description": "If type is not (yet) A and current transaction is of type B then type is B"
+    },
+    {
+      "expression": "1 == 1",
+      "result": "OTHER",
+      "description": "Otherwise type is Other"
+    }
+  ]
+}

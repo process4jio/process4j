@@ -1,0 +1,20 @@
+{
+	"transactions": {
+		"tx1": {
+			"id": "tx1",
+			"type": "A",
+			"region": 1,
+			"amount": 250.01
+		},
+		"tx2": {
+			"id": "tx2",
+			"type": "B",
+			"amount": 199.17
+		},
+		"tx3": {
+			"id": "tx3",
+			"type": "A",
+			"amount": 1800.62
+		}
+	}
+}
