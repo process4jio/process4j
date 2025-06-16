@@ -11,7 +11,7 @@
 		<url>https://process4j.io</url>
 	</organization>
 	<artifactId>process4j-core</artifactId>
-	<version>0.21.0-SNAPSHOT</version>
+	<version>0.21.0</version>
 
 	<licenses>
 		<license>
