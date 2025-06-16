@@ -236,9 +236,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.2.4</version>
-				<configuration>
+				<configuration>-->
 					<!-- <filters> <filter> <artifact>*:*</artifact> <excludes> <exclude>module-info.class</exclude> 
-						<exclude>META-INF/**</exclude> </excludes> </filter> </filters> -->
+						<exclude>META-INF/**</exclude> </excludes> </filter> </filters> --><!--
 					<shadedArtifactAttached>true</shadedArtifactAttached>
 					<shadedClassifierName>fatjar</shadedClassifierName>
 				</configuration>
