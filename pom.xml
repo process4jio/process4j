@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<name>Process4j - Core</name>
+	<description>Model and run business processes (in Java)</description>
+	<url>https://process4j.io</url>
 	<groupId>io.process4j</groupId>
 	<organization>
 		<name>io.process4j</name>
@@ -9,6 +12,30 @@
 	</organization>
 	<artifactId>process4j-core</artifactId>
 	<version>0.21.0-SNAPSHOT</version>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>process4j</id>
+			<name>Process4j Community</name>
+			<organization>io.process4j</organization>
+			<organizationUrl>https://process4j.io</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:process4jio/process4j.git</connection>
+		<developerConnection>scm:git:git@github.com:process4jio/process4j.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/process4jio/process4j</url>
+	</scm>
 
 	<properties>
 		<versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
