@@ -15,7 +15,7 @@
 
   <groupId>io.process4j</groupId>
   <artifactId>process4j-core</artifactId>
-  <version>0.21.1</version>
+  <version>0.21.1-SNAPSHOT</version>
 
   <licenses>
     <license>
@@ -40,12 +40,6 @@
     <tag>HEAD</tag>
     <url>https://github.com/process4jio/process4j</url>
   </scm>
-
-  <!-- <distributionManagement> <snapshotRepository> <id>central-portal-snapshots</id> 
-    <name>Central Portal Snapshots</name> <url>https://central.sonatype.com/repository/maven-snapshots/</url> 
-    </snapshotRepository> <repository> <id>central-portal-snapshots</id> <name>Central 
-    Portal Snapshots</name> <url>https://central.sonatype.com/repository/maven-snapshots/</url> 
-    </repository> </distributionManagement> -->
 
   <properties>
 
@@ -82,9 +76,6 @@
     <!--Maven Source Plugin -->
     <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 
-    <!-- <git-commit-id-plugin.version>4.0.2</git-commit-id-plugin.version> 
-      <clm-maven-plugin.version>2.17.0-02</clm-maven-plugin.version> -->
-
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- <maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure> -->
@@ -104,15 +95,13 @@
     <dependency>
       <groupId>com.fathzer</groupId>
       <artifactId>javaluator</artifactId>
-      <version>3.0.3</version>
+      <version>3.0.6</version>
     </dependency>
     <dependency>
       <groupId>com.sun.codemodel</groupId>
       <artifactId>codemodel</artifactId>
       <version>2.6</version>
     </dependency>
-    <!-- <dependency> <groupId>com.sun.activation</groupId> <artifactId>jakarta.activation</artifactId> 
-      <version>2.0.1</version> <scope>runtime</scope> </dependency> -->
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
@@ -124,8 +113,6 @@
       <version>2.3.8</version>
       <scope>runtime</scope>
     </dependency>
-    <!-- <dependency> <groupId>com.j2html</groupId> <artifactId>j2html</artifactId> 
-      <version>1.5.0</version> </dependency> -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -194,16 +181,6 @@
           </systemProperties>
         </configuration>
       </plugin>
-
-      <!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
-        <version>${git-commit-id-plugin.version}</version> <executions> <execution> 
-        <id>get-the-git-infos</id> <goals> <goal>revision</goal> </goals> <phase>initialize</phase> 
-        </execution> </executions> <configuration> <dotGitDirectory>${project.basedir}/.git</dotGitDirectory> 
-        <generateGitPropertiesFile>true</generateGitPropertiesFile> <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties 
-        </generateGitPropertiesFilename> <includeOnlyProperties> <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty> 
-        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty> 
-        </includeOnlyProperties> <commitIdGenerationMode>full</commitIdGenerationMode> 
-        </configuration> </plugin> -->
 
       <!--Maven Resources Plugin -->
       <plugin>
@@ -320,10 +297,6 @@
           </archive>
         </configuration>
       </plugin>
-
-      <!-- Maven Deploy Plugin -->
-      <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-deploy-plugin</artifactId> 
-        <version>${maven-deploy-plugin.version}</version> </plugin> -->
     </plugins>
   </build>
   <profiles>
