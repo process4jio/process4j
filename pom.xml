@@ -7,13 +7,15 @@
   <name>Process4j - Core</name>
   <description>Model and run business processes (in Java)</description>
   <url>https://process4j.io</url>
-  <groupId>io.process4j</groupId>
+
   <organization>
     <name>io.process4j</name>
     <url>https://process4j.io</url>
   </organization>
+
+  <groupId>io.process4j</groupId>
   <artifactId>process4j-core</artifactId>
-  <version>0.21.0-SNAPSHOT</version>
+  <version>0.21.1</version>
 
   <licenses>
     <license>
@@ -39,7 +41,14 @@
     <url>https://github.com/process4jio/process4j</url>
   </scm>
 
+  <!-- <distributionManagement> <snapshotRepository> <id>central-portal-snapshots</id> 
+    <name>Central Portal Snapshots</name> <url>https://central.sonatype.com/repository/maven-snapshots/</url> 
+    </snapshotRepository> <repository> <id>central-portal-snapshots</id> <name>Central 
+    Portal Snapshots</name> <url>https://central.sonatype.com/repository/maven-snapshots/</url> 
+    </repository> </distributionManagement> -->
+
   <properties>
+
     <!-- Maven Enforcer Plugin -->
     <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
     <maven-enforcer.requireMavenVersion>3.6.3</maven-enforcer.requireMavenVersion>
@@ -78,7 +87,7 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure>
+    <!-- <maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure> -->
   </properties>
 
   <dependencies>
@@ -311,6 +320,10 @@
           </archive>
         </configuration>
       </plugin>
+
+      <!-- Maven Deploy Plugin -->
+      <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-deploy-plugin</artifactId> 
+        <version>${maven-deploy-plugin.version}</version> </plugin> -->
     </plugins>
   </build>
   <profiles>
@@ -318,7 +331,6 @@
       <id>release</id>
       <build>
         <plugins>
-        
           <plugin>
             <groupId>org.sonatype.central</groupId>
             <artifactId>central-publishing-maven-plugin</artifactId>
