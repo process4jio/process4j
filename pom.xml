@@ -1,409 +1,374 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<name>Process4j - Core</name>
-	<description>Model and run business processes (in Java)</description>
-	<url>https://process4j.io</url>
-	<groupId>io.process4j</groupId>
-	<organization>
-		<name>io.process4j</name>
-		<url>https://process4j.io</url>
-	</organization>
-	<artifactId>process4j-core</artifactId>
-	<version>0.21.0</version>
+  <name>Process4j - Core</name>
+  <description>Model and run business processes (in Java)</description>
+  <url>https://process4j.io</url>
+  <groupId>io.process4j</groupId>
+  <organization>
+    <name>io.process4j</name>
+    <url>https://process4j.io</url>
+  </organization>
+  <artifactId>process4j-core</artifactId>
+  <version>0.21.0</version>
 
-	<licenses>
-		<license>
-			<name>MIT License</name>
-			<url>http://www.opensource.org/licenses/mit-license.php</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-	<developers>
-		<developer>
-			<id>process4j</id>
-			<name>Process4j Community</name>
-			<organization>io.process4j</organization>
-			<organizationUrl>https://process4j.io</organizationUrl>
-		</developer>
-	</developers>
+  <developers>
+    <developer>
+      <id>process4j</id>
+      <name>Process4j Community</name>
+      <organization>io.process4j</organization>
+      <organizationUrl>https://process4j.io</organizationUrl>
+    </developer>
+  </developers>
 
-	<scm>
-		<connection>scm:git:git@github.com:process4jio/process4j.git</connection>
-		<developerConnection>scm:git:git@github.com:process4jio/process4j.git</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://github.com/process4jio/process4j</url>
-	</scm>
+  <scm>
+    <connection>scm:git:git@github.com:process4jio/process4j.git</connection>
+    <developerConnection>scm:git:git@github.com:process4jio/process4j.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/process4jio/process4j</url>
+  </scm>
 
-	<properties>
-		<!-- Maven Enforcer Plugin -->
-		<maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
-		<maven-enforcer.requireMavenVersion>3.6.3</maven-enforcer.requireMavenVersion>
-		<maven-enforcer.requireJavaVersion>1.8</maven-enforcer.requireJavaVersion>
+  <properties>
+    <!-- Maven Enforcer Plugin -->
+    <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+    <maven-enforcer.requireMavenVersion>3.6.3</maven-enforcer.requireMavenVersion>
+    <maven-enforcer.requireJavaVersion>1.8</maven-enforcer.requireJavaVersion>
 
-		<!-- Maven Compiler Plugin -->
-		<maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<!--<maven.compiler.release>8</maven.compiler.release>-->
+    <!-- Maven Compiler Plugin -->
+    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!--<maven.compiler.release>8</maven.compiler.release> -->
 
-		<!-- Maven Surefire Plugin -->
-		<maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+    <!-- Maven Surefire Plugin -->
+    <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
 
-		<!--Maven Resources Plugin -->
-		<maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+    <!--Maven Resources Plugin -->
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 
-		<!--Maven Javadoc Plugin -->
-		<maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+    <!--Maven Javadoc Plugin -->
+    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
 
-		<!--Maven Jar Plugin -->
-		<maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+    <!--Maven Jar Plugin -->
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
 
-		<!--Maven Shade Plugin -->
-		<maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+    <!--Maven Shade Plugin -->
+    <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
 
-		<!--Maven Assembly Plugin -->
-		<maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
+    <!--Maven Assembly Plugin -->
+    <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
 
-		<!--Maven Source Plugin -->
-		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+    <!--Maven Source Plugin -->
+    <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 
-		<!--
-		<git-commit-id-plugin.version>4.0.2</git-commit-id-plugin.version>
-		<clm-maven-plugin.version>2.17.0-02</clm-maven-plugin.version>
-		-->
+    <!-- <git-commit-id-plugin.version>4.0.2</git-commit-id-plugin.version> 
+      <clm-maven-plugin.version>2.17.0-02</clm-maven-plugin.version> -->
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure>
-	</properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>io.vertx</groupId>
-			<artifactId>vertx-core</artifactId>
-			<version>4.3.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.14.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fathzer</groupId>
-			<artifactId>javaluator</artifactId>
-			<version>3.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.codemodel</groupId>
-			<artifactId>codemodel</artifactId>
-			<version>2.6</version>
-		</dependency>
-		<!--		<dependency>
-			<groupId>com.sun.activation</groupId>
-			<artifactId>jakarta.activation</artifactId>
-			<version>2.0.1</version>
-			<scope>runtime</scope>
-		</dependency>-->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.8</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!--		<dependency>
-			<groupId>com.j2html</groupId>
-			<artifactId>j2html</artifactId>
-			<version>1.5.0</version>
-		</dependency>-->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.9.2</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-core</artifactId>
+      <version>4.3.8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.14.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fathzer</groupId>
+      <artifactId>javaluator</artifactId>
+      <version>3.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.codemodel</groupId>
+      <artifactId>codemodel</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <!-- <dependency> <groupId>com.sun.activation</groupId> <artifactId>jakarta.activation</artifactId> 
+      <version>2.0.1</version> <scope>runtime</scope> </dependency> -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.8</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- <dependency> <groupId>com.j2html</groupId> <artifactId>j2html</artifactId> 
+      <version>1.5.0</version> </dependency> -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.9.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<plugins>
+  <build>
+    <plugins>
 
-			<!-- Maven Enforcer Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>${maven-enforcer-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>enforce-maven</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<requireMavenVersion>
-									<version>${maven-enforcer.requireMavenVersion}</version>
-								</requireMavenVersion>
-							</rules>
-						</configuration>
-					</execution>
-					<execution>
-						<id>enforce-java</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<requireJavaVersion>
-									<version>${maven-enforcer.requireJavaVersion}</version>
-								</requireJavaVersion>
-							</rules>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <!-- Maven Enforcer Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven-enforcer-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>
+                    ${maven-enforcer.requireMavenVersion}</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>
+                    ${maven-enforcer.requireJavaVersion}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Maven Compiler Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<release>${maven.compiler.release}</release>
-				</configuration>
-			</plugin>
+      <!-- Maven Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
 
-			<!-- Maven Surefire Plugin -->
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-				<configuration>
-					<systemProperties>
-						<!-- <maven.home>${maven.home}</maven.home> <maven.settings>${session.request.userSettingsFile.path}</maven.settings> -->
-					</systemProperties>
-				</configuration>
-			</plugin>
+      <!-- Maven Surefire Plugin -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <systemProperties>
+            <!-- <maven.home>${maven.home}</maven.home> <maven.settings>${session.request.userSettingsFile.path}</maven.settings> -->
+          </systemProperties>
+        </configuration>
+      </plugin>
 
-			<!--			<plugin>
-				<groupId>pl.project13.maven</groupId>
-				<artifactId>git-commit-id-plugin</artifactId>
-				<version>${git-commit-id-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>get-the-git-infos</id>
-						<goals>
-							<goal>revision</goal>
-						</goals>
-						<phase>initialize</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-					<generateGitPropertiesFile>true</generateGitPropertiesFile>
-					<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
-					</generateGitPropertiesFilename>
-					<includeOnlyProperties>
-						<includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
-						<includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
-					</includeOnlyProperties>
-					<commitIdGenerationMode>full</commitIdGenerationMode>
-				</configuration>
-			</plugin>-->
+      <!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
+        <version>${git-commit-id-plugin.version}</version> <executions> <execution> 
+        <id>get-the-git-infos</id> <goals> <goal>revision</goal> </goals> <phase>initialize</phase> 
+        </execution> </executions> <configuration> <dotGitDirectory>${project.basedir}/.git</dotGitDirectory> 
+        <generateGitPropertiesFile>true</generateGitPropertiesFile> <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties 
+        </generateGitPropertiesFilename> <includeOnlyProperties> <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty> 
+        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty> 
+        </includeOnlyProperties> <commitIdGenerationMode>full</commitIdGenerationMode> 
+        </configuration> </plugin> -->
 
-			<!--Maven Resources Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven-resources-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>copy-cli-sources</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target</outputDirectory>
-							<resources>
-								<resource>
-									<directory>script</directory>
-									<includes>
-										<include>*.sh</include>
-									</includes>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-							<overwrite>true</overwrite>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <!--Maven Resources Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>copy-cli-sources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>script</directory>
+                  <includes>
+                    <include>*.sh</include>
+                  </includes>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+              <overwrite>true</overwrite>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Maven Shade Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${maven-shade-plugin.version}</version>
-				<configuration>
-					<!-- <filters> <filter> <artifact>*:*</artifact> <excludes> <exclude>module-info.class</exclude> 
-						<exclude>META-INF/**</exclude> </excludes> </filter> </filters> -->
-					<shadedArtifactAttached>true</shadedArtifactAttached>
-					<shadedClassifierName>fatjar</shadedClassifierName>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>io.process4j.core.bpmn.Runner</mainClass>
-								</transformer>
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <!-- Maven Shade Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven-shade-plugin.version}</version>
+        <configuration>
+          <!-- <filters> <filter> <artifact>*:*</artifact> <excludes> <exclude>module-info.class</exclude> 
+            <exclude>META-INF/**</exclude> </excludes> </filter> </filters> -->
+          <shadedArtifactAttached>true</shadedArtifactAttached>
+          <shadedClassifierName>fatjar</shadedClassifierName>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>io.process4j.core.bpmn.Runner</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Maven Javadoc Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven-javadoc-plugin.version}</version>
-				<configuration>
-					<show>protected</show>
-					<nohelp>true</nohelp>
-					<outputDirectory>target/javadoc</outputDirectory>
-					<reportOutputDirectory>target/javadoc</reportOutputDirectory>
-					<doclint>none</doclint>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+      <!-- Maven Javadoc Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <configuration>
+          <show>protected</show>
+          <nohelp>true</nohelp>
+          <outputDirectory>target/javadoc</outputDirectory>
+          <reportOutputDirectory>target/javadoc</reportOutputDirectory>
+          <doclint>none</doclint>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Maven Assembly Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>${maven-assembly-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>create-sdk</id>
-						<configuration>
-							<descriptors>
-								<descriptor>sdk-assembly.xml</descriptor>
-							</descriptors>
-						</configuration>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+      <!-- Maven Assembly Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven-assembly-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>create-sdk</id>
+            <configuration>
+              <descriptors>
+                <descriptor>sdk-assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Maven Jar Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${maven-jar-plugin.version}</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.sonatype.central</groupId>
-						<artifactId>central-publishing-maven-plugin</artifactId>
-						<version>0.7.0</version>
-						<extensions>true</extensions>
-						<configuration>
-							<publishingServerId>central</publishingServerId>
-							<!--<tokenAuth>true</tokenAuth>
-							<autoPublish>true</autoPublish>-->
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>${maven-source-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!--
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.6.3</version>
-						<executions>
-							<execution>
-								<id>attach-javadoc</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<stylesheet>java</stylesheet>
-							<doclint>none</doclint>
-						</configuration>
-					</plugin>
-					-->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.2.7</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<gpgArguments>
-								<arg>--pinentry-mode</arg>
-								<arg>loopback</arg>
-							</gpgArguments>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+      <!-- Maven Jar Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven-jar-plugin.version}</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+        
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <!--<tokenAuth>true</tokenAuth> <autoPublish>true</autoPublish> -->
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
+            <version>3.6.3</version> <executions> <execution> <id>attach-javadoc</id> 
+            <goals> <goal>jar</goal> </goals> </execution> </executions> <configuration> 
+            <stylesheet>java</stylesheet> <doclint>none</doclint> </configuration> </plugin> -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.7</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
