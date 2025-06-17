@@ -38,34 +38,47 @@
 	</scm>
 
 	<properties>
-		<versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
-
-		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+		<!-- Maven Enforcer Plugin -->
+		<maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
 		<maven-enforcer.requireMavenVersion>3.6.3</maven-enforcer.requireMavenVersion>
 		<maven-enforcer.requireJavaVersion>1.8</maven-enforcer.requireJavaVersion>
 
-		<maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
-
-		<maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+		<!-- Maven Compiler Plugin -->
+		<maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!--<maven.compiler.release>8</maven.compiler.release>-->
 
+		<!-- Maven Surefire Plugin -->
+		<maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+
+		<!--Maven Resources Plugin -->
+		<maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+
+		<!--Maven Javadoc Plugin -->
+		<maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+
+		<!--Maven Jar Plugin -->
+		<maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+
+		<!--Maven Shade Plugin -->
+		<maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+
+		<!--Maven Assembly Plugin -->
+		<maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
+
+		<!--Maven Source Plugin -->
+		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+
+		<!--
 		<git-commit-id-plugin.version>4.0.2</git-commit-id-plugin.version>
-
-		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
-
-		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-
-		<maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
+		<clm-maven-plugin.version>2.17.0-02</clm-maven-plugin.version>
+		-->
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.buildNumber.revisionOnScmFailure>true</maven.buildNumber.revisionOnScmFailure>
-
-		<clm-maven-plugin.version>2.17.0-02</clm-maven-plugin.version>
-
 	</properties>
 
 	<dependencies>
@@ -121,14 +134,8 @@
 
 	<build>
 		<plugins>
-			<!--			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>${versions-maven-plugin.version}</version>
-				<configuration>
-					<generateBackupPoms>false</generateBackupPoms>
-				</configuration>
-			</plugin>-->
+
+			<!-- Maven Enforcer Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
@@ -162,6 +169,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Maven Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -170,6 +179,8 @@
 					<release>${maven.compiler.release}</release>
 				</configuration>
 			</plugin>
+
+			<!-- Maven Surefire Plugin -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
@@ -179,6 +190,7 @@
 					</systemProperties>
 				</configuration>
 			</plugin>
+
 			<!--			<plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
@@ -204,6 +216,8 @@
 					<commitIdGenerationMode>full</commitIdGenerationMode>
 				</configuration>
 			</plugin>-->
+
+			<!--Maven Resources Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -231,14 +245,15 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
+
+			<!-- Maven Shade Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.2.4</version>
-				<configuration>-->
+				<version>${maven-shade-plugin.version}</version>
+				<configuration>
 					<!-- <filters> <filter> <artifact>*:*</artifact> <excludes> <exclude>module-info.class</exclude> 
-						<exclude>META-INF/**</exclude> </excludes> </filter> </filters> --><!--
+						<exclude>META-INF/**</exclude> </excludes> </filter> </filters> -->
 					<shadedArtifactAttached>true</shadedArtifactAttached>
 					<shadedClassifierName>fatjar</shadedClassifierName>
 				</configuration>
@@ -258,7 +273,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
+
+			<!-- Maven Javadoc Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -279,11 +295,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
+
+			<!-- Maven Assembly Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>${maven-assembly-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>create-sdk</id>
@@ -299,11 +316,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
+
+			<!-- Maven Jar Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.2</version>
+				<version>${maven-jar-plugin.version}</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -334,7 +352,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>3.3.0</version>
+						<version>${maven-source-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
