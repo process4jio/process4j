@@ -145,7 +145,8 @@ public final class Execution
 
    private State getNextState(final Iteration iteration)
    {
-      return new State(this.getCurrentContext(), this.getCurrentPosition(), this.copyCurrentBusinessData(), this.copyCurrentProcessData(), iteration);
+      return new State(this.getCurrentContext(), this.getCurrentPosition(), this.copyCurrentBusinessData(!P4J.getBoolean(P4J.PROPERTIES_BUSINESSDATA_BY_REFERENCE)),
+            this.copyCurrentProcessData(!P4J.getBoolean(P4J.PROPERTIES_PROCESSDATA_BY_REFERENCE)), iteration);
    }
 
    private JsonObject currentBusinessData()
@@ -158,14 +159,14 @@ public final class Execution
       return this.states.isEmpty() ? null : this.states.get(this.states.size() - 1).getProcessData();
    }
 
-   JsonObject copyCurrentBusinessData()
+   JsonObject copyCurrentBusinessData(final boolean copy)
    {
-      return this.states.isEmpty() || this.getCurrentState().getBusinessData() == null ? null : this.getCurrentState().getBusinessData().copy();
+      return this.states.isEmpty() || this.getCurrentState().getBusinessData() == null ? null : copy ? this.getCurrentState().getBusinessData().copy() : this.getCurrentState().getBusinessData();
    }
 
-   ProcessData copyCurrentProcessData()
+   ProcessData copyCurrentProcessData(final boolean copy)
    {
-      return this.states.isEmpty() || this.getCurrentState().getProcessData() == null ? null : this.getCurrentState().getProcessData().copy();
+      return this.states.isEmpty() || this.getCurrentState().getProcessData() == null ? null : copy ? this.getCurrentState().getProcessData().copy() : this.getCurrentState().getProcessData();
    }
 
    void start(final State state) throws ExecutionException
