@@ -22,6 +22,8 @@ public abstract class P4J
 
    static final String PROPERTIES_MAX_ITERATIONS = PROPERTIES_PREFIX + "loopable.max-iterations";
    static final String PROPERTIES_RULE_VARIABLE_REGEX = PROPERTIES_PREFIX + "rule.variable-regex";
+   static final String PROPERTIES_BUSINESSDATA_BY_REFERENCE = PROPERTIES_PREFIX + "businessdata.pass-by-reference";
+   static final String PROPERTIES_PROCESSDATA_BY_REFERENCE = PROPERTIES_PREFIX + "processdata.pass-by-reference";
 
    static
    {

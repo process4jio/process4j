@@ -1,5 +1,7 @@
 package io.process4j.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Iteration
 {
    private final int value;
@@ -22,6 +24,7 @@ public class Iteration
       this.outer = outer;
    }
 
+   @JsonProperty("terminated")
    boolean isTerminated()
    {
       return this.terminated;
@@ -33,6 +36,7 @@ public class Iteration
       return this;
    }
 
+   @JsonProperty
    public int value()
    {
       return this.value;

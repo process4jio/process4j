@@ -84,8 +84,8 @@ public final class State
    public State setExecution(final Execution execution)
    {
       this.execution = execution;
-      this.businessData = execution.getCompletionState().getBusinessData().copy();
-      this.processData = execution.getCompletionState().getProcessData().copy();
+      this.businessData = execution.getCompletionState().getBusinessData();
+      this.processData = execution.getCompletionState().getProcessData();
       return this;
    }
 

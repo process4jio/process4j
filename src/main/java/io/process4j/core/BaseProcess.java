@@ -54,7 +54,11 @@ public abstract class BaseProcess implements Process
    @Override
    public final Execution execute(final JsonObject businessData, final ProcessData processData, final Iteration iteration) throws ExecutionException
    {
-      return this.execute(new State(null, this.defaultPosition, businessData, processData, iteration));
+      // Do not mutate client data! Mutations and resulting data can be found in Execution
+      final JsonObject bdCopy = businessData.copy();
+      final ProcessData pdCopy = processData.copy();
+
+      return this.execute(new State(null, this.defaultPosition, bdCopy, pdCopy, iteration));
    }
 
    final Execution execute(final State state) throws ExecutionException
