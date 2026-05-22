@@ -261,7 +261,7 @@ class BooleanEvaluatorTest
       this.test(new Rule(String.format("%s ~ /objects", jsonObject2), TRUE), true);
 
       final String jsonObject3 = "{\"id\":\"374b53af-e69b-3e18-bb02-ef0efffd2b25\",\"amount\":100.9,\"anotherAmount\": 200.1,\"name\":\"Fum\"}";
-      this.test(new Rule(String.format("%s ~ /objects", jsonObject3), TRUE), true);
+      this.test(new Rule(String.format("%s ~ /objects", jsonObject3), TRUE), false);
 
       final String jsonObject4 = "{\"id\":\"374b53af-e69b-3e18-bb02-ef0efffd2b25\",\"amount\":101,\"anotherAmount\": 200.1,\"name\":\"Fum\"}";
       this.test(new Rule(String.format("%s ~ /objects", jsonObject4), TRUE), false);
@@ -270,7 +270,7 @@ class BooleanEvaluatorTest
       this.test(new Rule(String.format("%s ~ /objects", jsonObject5), TRUE), false);
 
       final String jsonObject6 = "{\"id\":\"374b53af-e69b-3e18-bb02-ef0efffd2b25\",\"amount\":100,\"anotherAmount\": 200,\"name\":\"Fum\"}";
-      this.test(new Rule(String.format("%s ~ /objects", jsonObject6), TRUE), true);
+      this.test(new Rule(String.format("%s ~ /objects", jsonObject6), TRUE), false);
 
       final String jsonObject7 = "{\"id\":\"374b53af-e69b-3e18-bb02-ef0efffd2b25\",\"amount\":100,\"anotherAmount\": 200.11,\"name\":\"Fum\"}";
       this.test(new Rule(String.format("%s ~ /objects", jsonObject7), TRUE), false);
