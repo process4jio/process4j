@@ -28,3 +28,7 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Upload SDK to release
+        run: gh release upload ${{ github.event.release.tag_name }} target/*-sdk.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
