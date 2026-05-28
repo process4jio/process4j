@@ -16,8 +16,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      - run: mvn process-resources -B
+      - name: Set version in HTML
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          sed -i "s/\${project.version}/$VERSION/g" target/classes/META-INF/resources/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: src/main/resources/META-INF/resources/
+          path: target/classes/META-INF/resources/
       - id: deployment
         uses: actions/deploy-pages@v4
