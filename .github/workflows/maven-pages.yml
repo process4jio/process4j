@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: mvn pages
 
 on:
   push:
@@ -22,10 +22,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - run: mvn process-resources -B
-      - name: Set version in HTML
-        run: |
-          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          sed -i "s/\${project.version}/$VERSION/g" target/classes/META-INF/resources/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: target/classes/META-INF/resources/

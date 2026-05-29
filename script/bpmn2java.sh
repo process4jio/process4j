@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 print_usage () {
   echo -e "\nUsage:\t\t$0 [options] <output-folder> <input-file>\n\n"
@@ -42,7 +42,12 @@ done
 
 OUTPUT_FOLDER="${@:(-2):1}"
 INPUT_FILE="${@:(-1):1}"
-CLASSPATH_WIN="${project.artifactId}-${project.version}-fatjar.jar;"
+CLASSPATH="${project.artifactId}-${project.version}-fatjar.jar"
+if [ -n "$JAVA_HOME" ]; then
+    JAVA="${JAVA_HOME//\\//}/bin/java"
+else
+    JAVA="java"
+fi
 
 echo -e "\nBPMN input file:\t\t$INPUT_FILE"
 echo -e "Java output folder:\t\t$OUTPUT_FOLDER"
@@ -50,6 +55,6 @@ echo -e "Implementation stubs:\t\t$STUBS"
 echo -e "Replace files:\t\t\t$FORCE"
 echo -e "Create output folder:\t\t$CREATE"
 echo -e "Verbose:\t\t\t$DEBUG"
-echo -e "Classpath:\t\t\t$CLASSPATH_WIN\n"
+echo -e "Classpath:\t\t\t$CLASSPATH\n"
 
-"$JAVA_HOME\bin\java.exe" -cp $CLASSPATH_WIN io.process4j.core.bpmn.Runner bpmn2java $INPUT_FILE $OUTPUT_FOLDER $STUBS $FORCE $CREATE $DEBUG
+"$JAVA" -cp $CLASSPATH io.process4j.core.bpmn.Runner bpmn2java $INPUT_FILE $OUTPUT_FOLDER $STUBS $FORCE $CREATE $DEBUG
