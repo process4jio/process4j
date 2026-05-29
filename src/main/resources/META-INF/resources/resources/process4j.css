@@ -91,18 +91,13 @@ body.panel {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	text-align: right;
 	padding: 10px;
 	z-index: 3;
 }
 
-div.btn-group {
-	top: 25%;
-}
-
-a.navbar-brand {
-	position: relative;
-	top: 25%;
+#p4j-header .col-12 {
+	display: flex;
+	align-items: center;
 }
 
 /*#p4j-footer {
@@ -122,16 +117,14 @@ input:disabled, textarea:disabled, .btn:disabled {
 .navbar-brand {
 	margin-left: 2rem;
 	color: White;
-	margin-top: -1px;
+	text-align: left;
 }
 
 #processName {
-	top: 25%; 
-	right: 20px; 
-	font-size: 1.25rem; 
-	vertical-align: middle; 
-	position: relative;
+	font-size: 1.25rem;
 	color: white;
+	margin-left: auto;
+	margin-right: 20px;
 }
 
 /*.rule-list {
