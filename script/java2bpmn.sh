@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 print_usage () {
   echo -e "\nUsage:\n\t\t$0 <process-fqcn> <output-folder> <classpath>\n\n"

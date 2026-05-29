@@ -198,6 +198,27 @@
               <overwrite>true</overwrite>
             </configuration>
           </execution>
+          <!-- must run after default-resources -->
+          <execution>
+            <id>filter-html-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/classes/META-INF/resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources/META-INF/resources</directory>
+                  <includes>
+                    <include>**/*.html</include>
+                  </includes>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+              <overwrite>true</overwrite>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -260,10 +281,10 @@
         <version>${maven-assembly-plugin.version}</version>
         <executions>
           <execution>
-            <id>create-sdk</id>
+            <id>create-toolkit</id>
             <configuration>
               <descriptors>
-                <descriptor>sdk-assembly.xml</descriptor>
+                <descriptor>toolkit-assembly.xml</descriptor>
               </descriptors>
             </configuration>
             <phase>package</phase>
@@ -285,6 +306,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Implementation-Title>${project.artifactId}</Implementation-Title>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
