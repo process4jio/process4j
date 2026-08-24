@@ -95,7 +95,7 @@ public abstract class BaseDecisionTable implements DecisionTable
 
          if (effectiveRule.match(this.evaluator, businessData, processData))
          {
-            if (rule.getException())
+            if (rule.isException())
             {
                throw new RuntimeException(rule.getResult());
             }
