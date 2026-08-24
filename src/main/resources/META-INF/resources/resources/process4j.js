@@ -461,7 +461,17 @@ function createRuleCRUDElement(rule,config) {
 		rule.result = e.target.value;
 	});
 	inputGroupEl.appendChild(resultInputEl);
-	
+
+	let exceptionInputEl = document.createElement("input");
+	exceptionInputEl.classList.add("rule-exception");
+	exceptionInputEl.classList.add("exception-checkbox");
+	exceptionInputEl.setAttribute("type","checkbox");
+	exceptionInputEl.checked = !!rule.exception;
+	exceptionInputEl.addEventListener("change",function(){
+		rule.exception = this.checked;
+	});
+	inputGroupEl.appendChild(exceptionInputEl);
+
 	let buttonEl = document.createElement("button");
 	buttonEl.classList.add("btn","btn-outline-secondary");
 	buttonEl.setAttribute("type","button");
@@ -516,7 +526,18 @@ function createRuleCRUD(rule,config) {
 		enumerable: true,
 		configurable: true
 	});
-	
+
+	let bException = rule.exception;
+	Object.defineProperty(rule, "exception", {
+		get() {return bException;},
+		set(newValue) {
+			bException = newValue;
+			inputGroupEl.querySelector(".rule-exception").value = newValue;
+		},
+		enumerable: true,
+		configurable: true
+	});
+
 	let bDescription = rule.description;
 	Object.defineProperty(rule, "description", {
 		get() {return bDescription;},
@@ -584,6 +605,7 @@ function createRule(config) {
 	let rule = new Object();
 	rule.expression = "";
 	rule.result = "";
+	rule.exception = false;
 	rule.description = "";
 	return rule;
 }
