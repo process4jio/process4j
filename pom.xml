@@ -15,7 +15,7 @@
 
   <groupId>io.process4j</groupId>
   <artifactId>process4j-core</artifactId>
-  <version>0.24.0</version>
+  <version>0.24.1</version>
 
   <licenses>
     <license>
@@ -326,7 +326,8 @@
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
-              <!--<tokenAuth>true</tokenAuth> <autoPublish>true</autoPublish> -->
+              <autoPublish>true</autoPublish>
+              <!--<tokenAuth>true</tokenAuth> -->
             </configuration>
           </plugin>
           <plugin>
