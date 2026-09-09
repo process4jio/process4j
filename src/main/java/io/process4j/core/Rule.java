@@ -26,11 +26,18 @@ public final class Rule
 
    private final String expression;
    private final String result;
+   private final boolean isException;
 
    public Rule(final String expression, final String result)
    {
+      this(expression, result, false);
+   }
+
+   public Rule(final String expression, final String result, final boolean isException)
+   {
       this.expression = expression;
       this.result = result;
+      this.isException = isException;
 
       this.expressionPointers = new Pointers(expression);
       // this.resultPointers = new Pointers(result);
@@ -88,6 +95,11 @@ public final class Rule
    public String getResult()
    {
       return this.result;
+   }
+
+   public boolean isException()
+   {
+      return this.isException;
    }
 
    @Override

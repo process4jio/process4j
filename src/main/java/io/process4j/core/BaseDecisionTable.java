@@ -20,6 +20,7 @@ public abstract class BaseDecisionTable implements DecisionTable
 
    private static final String RESULT_ATTR = "result";
    private static final String EXPRESSION_ATTR = "expression";
+   private static final String EXCEPTION_ATTR = "exception";
 
    private final BooleanEvaluator evaluator = new BooleanEvaluator();
 
@@ -94,6 +95,11 @@ public abstract class BaseDecisionTable implements DecisionTable
 
          if (effectiveRule.match(this.evaluator, businessData, processData))
          {
+            if (rule.isException())
+            {
+               throw new RuntimeException(rule.getResult());
+            }
+
             this.apply(effectiveRule.result(businessData, processData), businessData, processData, iteration);
             break; // return on first match
          }
@@ -127,7 +133,7 @@ public abstract class BaseDecisionTable implements DecisionTable
 
          final JsonArray rules = buffer.toJsonObject().getJsonArray(key);
 
-         return rules != null ? rules.stream().map(JsonObject::mapFrom).map(json -> new Rule(json.getString(EXPRESSION_ATTR), json.getString(RESULT_ATTR)))
+         return rules != null ? rules.stream().map(JsonObject::mapFrom).map(json -> new Rule(json.getString(EXPRESSION_ATTR), json.getString(RESULT_ATTR), json.getBoolean(EXCEPTION_ATTR, false)))
                .collect(Collectors.toList()) : Collections.emptyList();
       }
    }

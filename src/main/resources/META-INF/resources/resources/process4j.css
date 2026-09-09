@@ -137,3 +137,8 @@ input:disabled, textarea:disabled, .btn:disabled {
 	margin-left: 0px !important;
 	margin-top: -1px !important;
 }
+
+.exception-checkbox {
+	margin-left: 3px !important;
+	margin-right: 3px !important;
+}
